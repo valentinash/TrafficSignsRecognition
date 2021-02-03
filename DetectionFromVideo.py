@@ -58,7 +58,10 @@ class DetectionFromVideo(LineDetection):
     def show(self):
         pass
 
-
+"""
+krijohet nje object i klases DetectionFromVideo D
+dhe nje object i klases Methods M
+"""
 D = DetectionFromVideo()
 M = Methods()
 cap = cv2.VideoCapture('resources/testVideo.mp4')
@@ -82,23 +85,30 @@ def detectSigns(frame):
     if cv2.contourArea(big) > 3000:
         print(cv2.contourArea(big))
         img, sign = M.boundaryBox(frame, big)
-        cv2.imshow('frame', img)
+        #cv2.imshow('frame', img)
         print("Shenja:", Constants.labelToText[M.predict(sign)])
     else:
-        cv2.imshow('frame', frame)
+        print("")
+        #cv2.imshow('frame', frame)
 
 
 while cap.isOpened():
+    #perderisa video is on play mode
+    #lexohen pamjet e videos frame-frame
     _, frame = cap.read()
-    # create threads
-    signsThread = Thread(target=detectSigns(frame), args=(10,))
-    linesThread = Thread(target=detectLines(frame), args=(10,))
+    """
+    krijohen dy threads
+    Njeri thread per detektimin e shenjave
+    Tjetri thread per detektimin e linjave
+    """
+    signsThread = Thread(target=detectSigns(frame), args=(frame,))
+    linesThread = Thread(target=detectLines(frame), args=(frame,))
 
-    # start threads
+    # startohen threadat
     signsThread.start()
     linesThread.start()
 
-    # wait until threads are completely executed
+    # pritet derisa te kompletohet threadi
     signsThread.join()
     linesThread.join()
 

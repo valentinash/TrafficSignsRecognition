@@ -19,6 +19,7 @@ class DetectionFromImages(Methods):
                 contours = M.findContour(img)
                 big = M.findBiggestContour(contours)
                 testCase, sign = M.boundaryBox(testCase, big)
+                #merr kohen ne miliskonda
                 tic = time.time()
                 print("Shenja e detektuar: ", Constants.labelToText[M.predict(sign)])
                 #toc = time.time()
