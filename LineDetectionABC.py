@@ -2,24 +2,23 @@ from abc import ABC, abstractmethod
 
 
 class LineDetection(ABC):
+    @abstractmethod
     def canny(self, frame):
         """
-
-        :return:
-        """
+            per indetifikim te skajeve te imazhit """
         pass
 
+    @abstractmethod
     def displayLines(self, image, lines):
         """
 
-        :return:
         """
         pass
-
+    @abstractmethod
     def regionOfInterest(self, image):
         """
+            vizatimi i trekendeshit
 
-        :return:
         """
         pass
 

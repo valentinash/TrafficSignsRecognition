@@ -16,7 +16,7 @@ class DetectionFromVideo(LineDetection):
         3 Finding Lane Lines
         Gaussian Blur (te hiqen zhurmat e figures)
         """
-        blur = cv2.GaussianBlur(gray, (5, 5), 0)
+        blur = cv2.GaussianBlur(gray, (5, 5), 0) #(5,5) - matrice, 0 - devijimi standart
         # cv2.imshow('image', blur)
         """
         3 Finding Lane Lines
@@ -34,12 +34,12 @@ class DetectionFromVideo(LineDetection):
                 cv2.line(lane_image, (x1, y1), (x2, y2), (255, 0, 0), 10)
         return lane_image
 
-    def regionOfInterest(self, image):
+    def regionOfInterest(self, image): #vizatimi i trekendeshit
         height = image.shape[0]
-        polygons = np.array([[(200, height), (1100, height), (550, 250)]])
-        mask = np.zeros_like(image)
-        cv2.fillPoly(mask, polygons, 255)
-        masked_image = cv2.bitwise_and(image, mask)
+        polygons = np.array([[(200, height), (1100, height), (550, 250)]]) #konturat e poligonit
+        mask = np.zeros_like(image) #black image
+        cv2.fillPoly(mask, polygons, 255)  #konturat e poligonit ne foto te zeze
+        masked_image = cv2.bitwise_and(image, mask) #bitwise_and - merr pikselat nga vendi i pozites
         return masked_image
 
     """image = cv2.imread('test_image.jpg')
