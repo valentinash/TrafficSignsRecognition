@@ -38,7 +38,7 @@ btnFromVideo = Button(root, text="Detektimi\nnga\nvideo", command=detectFromVide
                       bd=2, bg="light blue", relief="raised")
 btnFromVideo.place(x=350, y=y)
 
-btnClose = Button(root, text="Close", fg="black", font="Verdana 12",
+btnClose = Button(root, text="Mbyll", fg="black", font="Verdana 12",
                   bd=2, bg="red", relief="raised", compound=LEFT, command=root.destroy)
 btnClose.place(x=220, y=180)
 
