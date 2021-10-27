@@ -27,17 +27,17 @@ class DetectionFromCam(Thread):
         Vlera e dyte e kthyer eshte vete Frame
         """
         _, frame = cap.read()
-        redness = M.returnRedness(frame)
+        redness = M.redness(frame)
         thresh = M.threshold(redness)
         try:
-            contours = M.findContour(thresh)
-            big = M.findBiggestContour(contours)
+            contours = M.contour(thresh)
+            big = M.biggestContour(contours)
             if cv2.contourArea(big) > 3000:
                 print(cv2.contourArea(big))
                 img, sign = M.boundaryBox(frame, big)
                 #shfaq imazhin ne nje dritare
                 cv2.imshow('frame', img)
-                print("Shenja e detektuar: ", Constants.labelToText[M.predict(sign)])
+                print("Detected sign: ", Constants.labelToText[M.predict(sign)])
             else:
                 cv2.imshow('frame', frame)
         except:

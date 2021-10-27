@@ -77,16 +77,16 @@ def detectLines(frame):
 
 
 def detectSigns(frame):
-    redness = M.returnRedness(frame)  # step 1 --> specify the redness of the image
+    redness = M.redness(frame)  # step 1 --> specify the redness of the image
     thresh = M.threshold(redness)
 
-    contours = M.findContour(thresh)
-    big = M.findBiggestContour(contours)
+    contours = M.contour(thresh)
+    big = M.biggestContour(contours)
     if cv2.contourArea(big) > 3000:
         print(cv2.contourArea(big))
         img, sign = M.boundaryBox(frame, big)
         #cv2.imshow('frame', img)
-        print("Shenja:", Constants.labelToText[M.predict(sign)])
+        print("Sign:", Constants.labelToText[M.predict(sign)])
     else:
         print("")
         #cv2.imshow('frame', frame)

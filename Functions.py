@@ -5,7 +5,7 @@ from resources import Constants
 
 class Methods:
 
-    def returnRedness(self, img):
+    def redness(self, img):
         yuv = cv2.cvtColor(img, cv2.COLOR_BGR2YUV)
         y, u, v = cv2.split(yuv)
         return v
@@ -14,11 +14,11 @@ class Methods:
         _, img = cv2.threshold(img, T, 255, cv2.THRESH_BINARY)
         return img
 
-    def findContour(self, img):
+    def contour(self, img):
         contours, hierarchy = cv2.findContours(img, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
         return contours
 
-    def findBiggestContour(self, contours):
+    def biggestContour(self, contours):
         m = 0
         c = [cv2.contourArea(i) for i in contours]
         return contours[c.index(max(c))]
